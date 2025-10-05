@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Primary Research</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="primary">
+  <!-- Navbar -->
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="secondary.html">Secondary Research</a>
+    <a href="primary.html" class="active">Primary Research</a>
+    <a href="action.html">Evidence of Action</a>
+    <a href="roles.html">Team Roles</a>
+    <a href="references.html">References</a>
+  </nav>
+
+  <!-- Main container -->
+  <div class="secondary-container">
+    <h1>Primary Research</h1>
+    <p class="intro">Explore first-hand data gathered through direct research.</p>
+
+    <!-- Tab buttons -->
+    <div class="tab-buttons">
+      <button class="tab-btn active" onclick="showTab('survey')">Surveys</button>
+      <button class="tab-btn" onclick="showTab('interviews')">Interviews</button>
+      <button class="tab-btn" onclick="showTab('questionnaire')">Questionnaire</button>
+      <button class="tab-btn" onclick="showTab('observation')">Observation</button>
+    </div>
+
+    <!-- Tab content -->
+    <div class="tab-content active" id="survey">
+      <h2>Surveys</h2>
+      <p>Write about survey findings here...</p>
+    </div>
+
+    <div class="tab-content" id="interviews">
+      <h2>Interviews</h2>
+      <p>Summarize interviews conducted...</p>
+    </div>
+
+    <div class="tab-content" id="questionnaire">
+      <h2>Questionnaire</h2>
+      <p>Details about questionnaire results...</p>
+    </div>
+
+    <div class="tab-content" id="observation">
+      <h2>Observation</h2>
+      <p>Insights from direct observation...</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 | Primary Research</p>
+  </footer>
+
+  <!-- JS for tabs -->
+  <script>
+    function showTab(tabId) {
+      document.querySelectorAll(".tab-btn").forEach(btn => btn.classList.remove("active"));
+      document.querySelectorAll(".tab-content").forEach(tab => tab.classList.remove("active"));
+
+      document.querySelector(`.tab-btn[onclick="showTab('${tabId}')"]`).classList.add("active");
+      document.getElementById(tabId).classList.add("active");
+    }
+  </script>
+</body>
+</html>

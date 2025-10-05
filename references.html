@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>References</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="references">
+  <!-- Navbar -->
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="secondary.html">Secondary Research</a>
+    <a href="primary.html">Primary Research</a>
+    <a href="action.html">Evidence of Action</a>
+    <a href="roles.html">Team Roles</a>
+    <a href="references.html" class="active">References</a>
+  </nav>
+
+  <!-- Main container -->
+  <div class="secondary-container">
+    <h1>References</h1>
+    <p class="intro">Cite all sources of information used in your research.</p>
+
+    <!-- Tab buttons -->
+    <div class="tab-buttons">
+      <button class="tab-btn active" onclick="showTab('books')">Books</button>
+      <button class="tab-btn" onclick="showTab('articles')">Articles</button>
+      <button class="tab-btn" onclick="showTab('websites')">Websites</button>
+    </div>
+
+    <!-- Tab content -->
+    <div class="tab-content active" id="books">
+      <h2>Books</h2>
+      <ul>
+        <li>Author, A. (Year). *Book Title*. Publisher.</li>
+      </ul>
+    </div>
+
+    <div class="tab-content" id="articles">
+      <h2>Articles</h2>
+      <ul>
+        <li>Author, B. (Year). "Article Title." *Journal Name*.</li>
+      </ul>
+    </div>
+
+    <div class="tab-content" id="websites">
+      <h2>Websites</h2>
+      <ul>
+        <li><a href="#">https://example.com</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 | References</p>
+  </footer>
+
+  <!-- JS for tabs -->
+  <script>
+    function showTab(tabId) {
+      document.querySelectorAll(".tab-btn").forEach(btn => btn.classList.remove("active"));
+      document.querySelectorAll(".tab-content").forEach(tab => tab.classList.remove("active"));
+
+      document.querySelector(`.tab-btn[onclick="showTab('${tabId}')"]`).classList.add("active");
+      document.getElementById(tabId).classList.add("active");
+    }
+  </script>
+</body>
+</html>

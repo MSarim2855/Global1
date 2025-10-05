@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evidence of Action</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="action">
+  <!-- Navbar -->
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="secondary.html">Secondary Research</a>
+    <a href="primary.html">Primary Research</a>
+    <a href="action.html" class="active">Evidence of Action</a>
+    <a href="roles.html">Team Roles</a>
+    <a href="references.html">References</a>
+  </nav>
+
+  <!-- Main container -->
+  <div class="secondary-container">
+    <h1>Evidence of Action</h1>
+    <p class="intro">Show the actions taken and their outcomes.</p>
+
+    <!-- Tab buttons -->
+    <div class="tab-buttons">
+      <button class="tab-btn active" onclick="showTab('action1')">Action Taken</button>
+      <button class="tab-btn" onclick="showTab('impact')">Impact</button>
+      <button class="tab-btn" onclick="showTab('reflection')">Reflection</button>
+    </div>
+
+    <!-- Tab content -->
+    <div class="tab-content active" id="action1">
+      <h2>Action Taken</h2>
+      <p>Describe the steps taken as part of the project...</p>
+    </div>
+
+    <div class="tab-content" id="impact">
+      <h2>Impact</h2>
+      <p>Explain the effect of your action...</p>
+    </div>
+
+    <div class="tab-content" id="reflection">
+      <h2>Reflection</h2>
+      <p>Reflect on what worked and what could be improved...</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 | Evidence of Action</p>
+  </footer>
+
+  <!-- JS for tabs -->
+  <script>
+    function showTab(tabId) {
+      document.querySelectorAll(".tab-btn").forEach(btn => btn.classList.remove("active"));
+      document.querySelectorAll(".tab-content").forEach(tab => tab.classList.remove("active"));
+
+      document.querySelector(`.tab-btn[onclick="showTab('${tabId}')"]`).classList.add("active");
+      document.getElementById(tabId).classList.add("active");
+    }
+  </script>
+</body>
+</html>
