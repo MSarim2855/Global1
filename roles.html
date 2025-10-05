@@ -4,275 +4,323 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GP Project - Research Tasks</title>
-<link rel="stylesheet" href="style.css">
 <style>
-    body {
-        background: url('home_image.png') no-repeat center center fixed;
-        background-size: cover;
-        color: #f5f5f5;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        margin: 0;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        scroll-behavior: smooth;
-    }
+/* ==== Base Styling ==== */
+body {
+    background: url('home_image.png') no-repeat center center fixed;
+    background-size: cover;
+    color: #f5f5f5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    scroll-behavior: smooth;
+}
 
+/* ==== Navbar ==== */
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.85);
+    padding: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.6);
+    border-bottom: 2px solid #00adb5;
+    backdrop-filter: blur(6px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+
+/* Navbar Links */
+nav a {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    padding: 10px 15px;
+    border-radius: 10px;
+}
+
+nav a:hover {
+    color: #00e0ff;
+    background-color: rgba(0,224,255,0.15);
+    box-shadow: 0 0 10px rgba(0,224,255,0.3);
+}
+
+nav a[href="roles.html"] {
+    color: #00e0ff;
+    text-shadow: 0 0 15px rgba(0,224,255,0.6);
+    font-weight: bold;
+}
+
+/* ==== Hamburger Menu (hidden by default) ==== */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    margin-left: 15px;
+}
+.menu-toggle div {
+    width: 25px;
+    height: 3px;
+    background: #f5f5f5;
+    margin: 4px 0;
+    transition: all 0.3s;
+}
+
+/* Links container */
+.nav-links {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links.active {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background: rgba(10, 10, 10, 0.95);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding: 15px 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+}
+
+/* ==== Accent Line ==== */
+.nav-accent {
+    height: 4px;
+    width: 100%;
+    background: linear-gradient(90deg, #00adb5, #00e0ff);
+    box-shadow: 0 0 10px rgba(0, 224, 255, 0.5);
+}
+
+/* ==== Roles Container ==== */
+.roles-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.7);
+    margin: 60px;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+    text-align: center;
+    backdrop-filter: blur(5px);
+    animation: fadeIn 1s ease forwards;
+}
+
+.roles-container h1 {
+    font-size: 2.7em;
+    color: #00e0ff;
+    text-shadow: 0 0 20px rgba(0,224,255,0.6);
+    margin-bottom: 40px;
+}
+
+/* ==== Section Titles ==== */
+.section-title {
+    font-size: 1.8em;
+    color: #00adb5;
+    text-shadow: 0 0 15px rgba(0,224,255,0.4);
+    margin: 30px 0 15px;
+    text-align: left;
+    width: 85%;
+    max-width: 800px;
+}
+
+/* ==== Table ==== */
+table {
+    width: 85%;
+    max-width: 800px;
+    border-collapse: collapse;
+    margin-bottom: 50px;
+    background: rgba(25, 25, 25, 0.85);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 25px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.08);
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    vertical-align: top;
+}
+
+th {
+    background: linear-gradient(135deg, rgba(0,224,255,0.2), rgba(0,173,181,0.15));
+    color: #00e0ff;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    width: 30%;
+}
+
+td {
+    color: #ddd;
+    font-size: 1.05em;
+}
+
+td ul {
+    margin: 0;
+    padding-left: 20px;
+    list-style-type: disc;
+}
+
+td ul li {
+    margin-bottom: 6px;
+}
+
+/* No bullets list */
+.no-bullets {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+tr:hover {
+    background: rgba(0,224,255,0.08);
+    transition: background 0.3s ease;
+}
+
+/* ==== Footer ==== */
+footer {
+    text-align: center;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.85);
+    color: #777;
+    font-size: 0.9em;
+    border-top: 2px solid #00adb5;
+}
+
+/* ==== Animations ==== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
+}
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==== Responsive ==== */
+@media screen and (max-width: 900px) {
     nav {
+        justify-content: space-between;
+        padding: 10px 20px;
+    }
+    .menu-toggle {
         display: flex;
-        justify-content: center;
-        background: rgba(0, 0, 0, 0.85);
-        padding: 15px;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.6);
-        border-bottom: 2px solid #00adb5;
-        backdrop-filter: blur(6px);
     }
-
-    nav a {
-        color: #ccc;
-        text-decoration: none;
-        margin: 0 15px;
-        font-size: 1em;
-        transition: all 0.3s ease;
-        padding: 10px 15px;
-        border-radius: 10px;
-        outline: none;
-    }
-
-    nav a:hover {
-        color: #00e0ff;
-        background-color: rgba(0,224,255,0.15);
-        box-shadow: 0 0 10px rgba(0,224,255,0.3);
-    }
-
-    nav a[href="roles.html"] {
-        color: #00e0ff;
-        text-shadow: 0 0 15px rgba(0,224,255,0.6);
-        font-weight: bold;
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
     }
 
     .roles-container {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background: rgba(0, 0, 0, 0.7);
-        margin: 60px;
-        padding: 40px;
+        margin: 20px;
+        padding: 30px 15px;
+        background: rgba(0,0,0,0.65);
+        box-shadow: 0 10px 40px rgba(0,0,0,0.7);
         border-radius: 20px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.7);
-        text-align: center;
-        backdrop-filter: blur(5px);
-        animation: fadeIn 1s ease forwards;
     }
 
     .roles-container h1 {
-        font-size: 2.7em;
-        color: #00e0ff;
-        text-shadow: 0 0 20px rgba(0,224,255,0.6);
-        margin-bottom: 40px;
-    }
-
-    .section-title {
-        font-size: 1.8em;
-        color: #00adb5;
-        text-shadow: 0 0 15px rgba(0,224,255,0.4);
-        margin: 30px 0 15px;
-        text-align: left;
-        width: 85%;
-        max-width: 800px;
+        font-size: 2em;
+        text-align: center;
     }
 
     table {
-        width: 85%;
-        max-width: 800px;
-        border-collapse: collapse;
-        margin-bottom: 50px;
-        background: rgba(25, 25, 25, 0.85);
-        border-radius: 15px;
-        overflow: hidden;
-        box-shadow: 0 4px 25px rgba(0,0,0,0.5);
-        border: 1px solid rgba(255,255,255,0.08);
-        animation: fadeInUp 0.8s ease forwards;
+        width: 95%;
+        font-size: 0.95em;
     }
 
     th, td {
-        padding: 15px;
+        display: block;
         text-align: left;
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-        vertical-align: top;
+        padding: 12px;
     }
 
     th {
-        background: linear-gradient(135deg, rgba(0,224,255,0.2), rgba(0,173,181,0.15));
+        background: none;
+        border-bottom: none;
         color: #00e0ff;
-        font-size: 1.1em;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        width: 30%;
     }
 
     td {
-        color: #ddd;
-        font-size: 1.05em;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
     }
 
-    td ul {
-        margin: 0;
-        padding-left: 20px;
-        list-style-type: disc;
+    tr {
+        display: block;
+        margin-bottom: 20px;
+        border-radius: 12px;
+        background: rgba(255,255,255,0.05);
+        padding: 10px;
     }
+}
 
-    td ul li {
-        margin-bottom: 6px;
+@media screen and (max-width: 600px) {
+    .roles-container h1 {
+        font-size: 1.7em;
     }
-
-    /* remove bullets for names in Survey Filing */
-    .no-bullets {
-        list-style-type: none;
-        padding-left: 0;
-    }
-
-    tr:hover {
-        background: rgba(0,224,255,0.08);
-        transition: background 0.3s ease;
-    }
-
-    footer {
-        text-align: center;
-        padding: 15px;
-        background: rgba(0, 0, 0, 0.85);
-        color: #777;
+    table {
         font-size: 0.9em;
-        border-top: 2px solid #00adb5;
     }
-
-    @keyframes fadeIn {
-        from { opacity: 0; transform: scale(0.98); }
-        to { opacity: 1; transform: scale(1); }
-    }
-
-    @keyframes fadeInUp {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    @media screen and (max-width: 600px) {
-        .roles-container {
-            margin: 25px;
-            padding: 30px 20px;
-        }
-        table {
-            font-size: 0.9em;
-        }
-        .roles-container h1 {
-            font-size: 2em;
-        }
-    }
+}
 </style>
 </head>
+
 <body>
 
+<!-- ===== Navbar ===== -->
 <nav>
-    <a href="index.html">Home</a>
-    <a href="secondary.html">Secondary Research</a>
-    <a href="primary.html">Primary Research</a>
-    <a href="action.html">Evidence of Action</a>
-    <a href="roles.html">Team Roles</a>
-    <a href="references.html">References</a>
+    <div class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="secondary.html">Secondary Research</a>
+        <a href="primary.html">Primary Research</a>
+        <a href="action.html">Evidence of Action</a>
+        <a href="roles.html">Team Roles</a>
+        <a href="references.html">References</a>
+    </div>
 </nav>
 
+<div class="nav-accent"></div>
+
+<!-- ===== Roles Section ===== -->
 <div class="roles-container">
     <h1>Team Contributors & Their Tasks</h1>
 
     <!-- Secondary Research Section -->
     <div class="section-title">Secondary Research</div>
     <table>
-        <tr>
-            <th>Contributor</th>
-            <th>Tasks Performed</th>
-        </tr>
-        <tr>
-            <td>Sarim Sajid</td>
-            <td>
-                <ul>
-                    <li>National Perspective</li>
-                    <li>Website Development & Ongoing Updates</li>
-                    <li>Conclusion Writing</li>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td>Muhammad Dawood</td>
-            <td>
-                <ul>
-                    <li>Causes & Consequences</li>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td>Taha Talib</td>
-            <td>
-                <ul>
-                    <li>Global Perspective</li>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td>Ammar Ateeq</td>
-            <td>
-                <ul>
-                    <li>Local Perspective</li>
-                </ul>
-            </td>
-        </tr>
+        <tr><th>Contributor</th><th>Tasks Performed</th></tr>
+        <tr><td>Sarim Sajid</td><td><ul><li>National Perspective</li><li>Website Development & Ongoing Updates</li><li>Conclusion Writing</li></ul></td></tr>
+        <tr><td>Muhammad Dawood</td><td><ul><li>Causes & Consequences</li></ul></td></tr>
+        <tr><td>Taha Talib</td><td><ul><li>Global Perspective</li></ul></td></tr>
+        <tr><td>Ammar Ateeq</td><td><ul><li>Local Perspective</li></ul></td></tr>
     </table>
 
     <!-- Primary Research Section -->
     <div class="section-title">Primary Research</div>
     <table>
-        <tr>
-            <th>Contributor</th>
-            <th>Tasks Performed</th>
-        </tr>
-        <tr>
-            <td>Zohair Mustafa</td>
-            <td>
-                <ul>
-                    <li>Survey Question Design & Printing</li>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td>Entire Crew</td>
-            <td>
-                <ul>
-                    <li>Survey Conduction</li>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td>Ateeq Ahmed</td>
-            <td>
-                <ul>
-                    <li>Data Analysis</li>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <ul class="no-bullets">
-                    <li>Sarim Sajid</li>
-                    <li>Taha Talib</li>
-                    <li>Ammar Ateeq</li>
-                </ul>
-            </td>
-            <td>
-                <ul>
-                    <li>Survey Filing</li>
-                </ul>
-            </td>
-        </tr>
+        <tr><th>Contributor</th><th>Tasks Performed</th></tr>
+        <tr><td>Zohair Mustafa</td><td><ul><li>Survey Question Design & Printing</li></ul></td></tr>
+        <tr><td>Entire Crew</td><td><ul><li>Survey Conduction</li></ul></td></tr>
+        <tr><td>Ateeq Ahmed</td><td><ul><li>Data Analysis</li></ul></td></tr>
+        <tr><td><ul class="no-bullets"><li>Sarim Sajid</li><li>Taha Talib</li><li>Ammar Ateeq</li></ul></td><td><ul><li>Survey Filing</li></ul></td></tr>
     </table>
 </div>
 
