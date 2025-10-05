@@ -26,9 +26,11 @@
         backdrop-filter: blur(6px);
         display: flex;
         justify-content: center;
+        align-items: center;
         gap: 30px;
         padding: 14px 0;
         border-bottom: 1px solid rgba(255,255,255,0.08);
+        transition: all 0.3s ease-in-out;
     }
 
     nav a {
@@ -53,7 +55,7 @@
         display: none;
         flex-direction: column;
         cursor: pointer;
-        margin-right: 20px;
+        margin-left: 15px;
     }
 
     .menu-toggle div {
@@ -61,23 +63,37 @@
         height: 3px;
         background: #f5f5f5;
         margin: 4px 0;
+        border-radius: 3px;
         transition: all 0.3s;
     }
 
     .nav-links {
         display: flex;
         gap: 30px;
+        align-items: center;
     }
 
     .nav-links.active {
-        display: block;
+        display: flex;
         flex-direction: column;
-        text-align: center;
         background: rgba(10, 10, 10, 0.95);
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        text-align: center;
         padding: 15px 0;
+        gap: 15px;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        animation: fadeDown 0.3s ease-in-out;
     }
 
-    /* Light blue line below header */
+    @keyframes fadeDown {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Accent line */
     .nav-accent {
         height: 4px;
         width: 100%;
@@ -94,15 +110,16 @@
         align-items: center;
         text-align: center;
         padding: 60px 30px;
-        margin: 50px;
+        margin: 50px auto;
         background: rgba(0, 0, 0, 0.7);
         border-radius: 25px;
         box-shadow: 0 15px 50px rgba(0,0,0,0.8);
         border: 1px solid rgba(255,255,255,0.1);
         backdrop-filter: blur(4px);
+        max-width: 700px;
+        width: 90%;
     }
 
-    /* Heading */
     .home-container h1 {
         font-size: 3em;
         margin-bottom: 25px;
@@ -111,7 +128,6 @@
         font-weight: 700;
     }
 
-    /* Subheading */
     .home-container p.subheading {
         font-size: 1.3em;
         color: #c0f0ff;
@@ -119,7 +135,6 @@
         letter-spacing: 0.5px;
     }
 
-    /* Project info box */
     .project-info {
         background: rgba(20, 20, 20, 0.6);
         padding: 30px 25px;
@@ -128,6 +143,7 @@
         text-align: left;
         color: #e0e0e0;
         box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+        width: 100%;
     }
 
     .project-info strong {
@@ -181,14 +197,18 @@
         100% { opacity: 1; transform: translateY(0);}
     }
 
-    /* Responsive */
-    @media screen and (max-width: 900px) {
-        .nav-links {
-            display: none;
-            flex-direction: column;
-            width: 100%;
+    /* Tablet */
+    @media (max-width: 1024px) {
+        .home-container h1 {
+            font-size: 2.5em;
         }
+        .home-container p.subheading {
+            font-size: 1.2em;
+        }
+    }
 
+    /* Mobile */
+    @media (max-width: 768px) {
         nav {
             justify-content: space-between;
             padding: 10px 20px;
@@ -198,26 +218,45 @@
             display: flex;
         }
 
+        .nav-links {
+            display: none;
+        }
+
         .home-container {
-            margin: 20px;
+            margin: 25px 15px;
             padding: 30px 20px;
         }
 
         .home-container h1 {
-            font-size: 2em;
+            font-size: 1.9em;
         }
 
         .home-container p.subheading {
-            font-size: 1.1em;
+            font-size: 1.05em;
         }
 
         .project-info {
-            max-width: 100%;
             font-size: 0.95em;
         }
 
         footer {
             font-size: 0.8em;
+        }
+    }
+
+    /* Very small devices */
+    @media (max-width: 480px) {
+        .home-container {
+            padding: 20px 15px;
+        }
+        .home-container h1 {
+            font-size: 1.6em;
+        }
+        .home-container p.subheading {
+            font-size: 1em;
+        }
+        .project-info li {
+            font-size: 0.95em;
         }
     }
 </style>
