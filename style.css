@@ -23,7 +23,7 @@ nav {
     backdrop-filter: blur(8px);
     display: flex;
     justify-content: center;
-    flex-wrap: wrap; /* ✅ wrap on small screens */
+    flex-wrap: wrap; /* ✅ wraps nav items on small screens */
     gap: 15px;
     padding: 12px;
     border-bottom: 1px solid rgba(255,255,255,0.08);
@@ -39,7 +39,8 @@ nav a {
     font-size: 1em;
 }
 
-nav a:hover, nav a.active {
+nav a:hover, 
+nav a.active {
     background: linear-gradient(135deg, #00adb5, #007f89);
     color: #121212;
     box-shadow: 0 4px 12px rgba(0, 173, 181, 0.4);
@@ -50,7 +51,7 @@ nav a:hover, nav a.active {
 .secondary-container {
     flex: 1;
     max-width: 900px;
-    width: 100%; /* ✅ full width on mobile */
+    width: 100%;
     margin: 20px auto;
     padding: 20px;
     background: rgba(30, 30, 30, 0.9);
@@ -101,11 +102,11 @@ nav a:hover, nav a.active {
 .tab-content {
     display: none;
     text-align: left;
-    overflow-y: auto;
+    overflow-y: visible;   /* ✅ don’t force scroll on mobile */
     animation: fadeIn 0.5s ease-in-out;
-    scroll-behavior: smooth;
     line-height: 1.6;
     font-size: 1em;
+    max-height: none;      /* ✅ no squishing */
 }
 
 .tab-content.active {
@@ -126,6 +127,7 @@ footer {
     .secondary-container {
         margin: 10px;
         padding: 15px;
+        width: 95%; /* ✅ fit smaller screens */
     }
 
     .secondary-container h1 {
