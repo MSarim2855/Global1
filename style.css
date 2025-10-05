@@ -23,7 +23,7 @@ nav {
     backdrop-filter: blur(8px);
     display: flex;
     justify-content: center;
-    flex-wrap: wrap; /* ✅ wraps nav items on small screens */
+    flex-wrap: wrap; /* ✅ wrap on small screens */
     gap: 15px;
     padding: 12px;
     border-bottom: 1px solid rgba(255,255,255,0.08);
@@ -102,11 +102,11 @@ nav a.active {
 .tab-content {
     display: none;
     text-align: left;
-    overflow-y: visible;   /* ✅ don’t force scroll on mobile */
+    overflow-y: visible;   /* no squishing */
     animation: fadeIn 0.5s ease-in-out;
     line-height: 1.6;
     font-size: 1em;
-    max-height: none;      /* ✅ no squishing */
+    max-height: none;
 }
 
 .tab-content.active {
@@ -123,11 +123,28 @@ footer {
 }
 
 /* === RESPONSIVE FIXES === */
+
+/* Tablets (portrait & landscape) */
+@media screen and (max-width: 1024px) {
+    .secondary-container {
+        max-width: 95%;
+        padding: 18px;
+    }
+    nav {
+        gap: 10px;
+    }
+    nav a {
+        font-size: 0.95em;
+        padding: 7px 12px;
+    }
+}
+
+/* Phones (large) */
 @media screen and (max-width: 768px) {
     .secondary-container {
         margin: 10px;
         padding: 15px;
-        width: 95%; /* ✅ fit smaller screens */
+        width: 95%;
     }
 
     .secondary-container h1 {
@@ -151,7 +168,14 @@ footer {
     }
 }
 
-@media screen and (max-width: 400px) {
+/* Phones (small) */
+@media screen and (max-width: 480px) {
+    nav {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
     nav a {
         font-size: 0.85em;
         padding: 6px 10px;
